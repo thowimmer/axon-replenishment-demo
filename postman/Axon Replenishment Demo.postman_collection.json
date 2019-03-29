@@ -1,0 +1,396 @@
+{
+	"info": {
+		"_postman_id": "c3a6345e-36ae-4dba-95ea-565335b91556",
+		"name": "Axon Replenishment Demo",
+		"description": "Execution of basic workflow showing the usage of the axon-replenishment-demo.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1.) TSI - Create Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d0c60a6-b2f0-4bb2-8036-5c229ea45d85",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tokenStatus\": \"ACTIVE\"\n}"
+				},
+				"url": {
+					"raw": "{{HOST}}/tsi/token",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"tsi",
+						"token"
+					]
+				},
+				"description": "Create a new token via the TokenServiceIntegrator API."
+			},
+			"response": []
+		},
+		{
+			"name": "2.) REPORTING - Get amount of replenishments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{HOST}}/reporting/token/{{tokenId}}/replenishments",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"reporting",
+						"token",
+						"{{tokenId}}",
+						"replenishments"
+					]
+				},
+				"description": "Gets the amount of replenishments for a certain token via the Reporting API."
+			},
+			"response": []
+		},
+		{
+			"name": "3.) SDK - Start Replenishment",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"tokenId\": \"{{tokenId}}\"\n}"
+				},
+				"url": {
+					"raw": "{{HOST}}/sdk/replenishment/start",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sdk",
+						"replenishment",
+						"start"
+					]
+				},
+				"description": "Starts a replenishment for the given token via the SDK API."
+			},
+			"response": []
+		},
+		{
+			"name": "4.) SDK - Get Replenishment Info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{HOST}}/sdk/replenishment/{{replenishmentId}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sdk",
+						"replenishment",
+						"{{replenishmentId}}"
+					]
+				},
+				"description": "Gets information for the given replenishment via the SDK API."
+			},
+			"response": []
+		},
+		{
+			"name": "5.) TSI - Supply Keys",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d0c60a6-b2f0-4bb2-8036-5c229ea45d85",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"keys\": [\n\t\t{\n\t\t\t\"daysValid\": 10\n\t\t}\n\t]\n}"
+				},
+				"url": {
+					"raw": "{{HOST}}/tsi/replenishment/{{replenishmentId}}/keys",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"tsi",
+						"replenishment",
+						"{{replenishmentId}}",
+						"keys"
+					]
+				},
+				"description": "Create a new token via the TokenServiceIntegrator API."
+			},
+			"response": []
+		},
+		{
+			"name": "6.) SDK - Get Replenishment Info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{HOST}}/sdk/replenishment/{{replenishmentId}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sdk",
+						"replenishment",
+						"{{replenishmentId}}"
+					]
+				},
+				"description": "Gets information for the given replenishment via the SDK API."
+			},
+			"response": []
+		},
+		{
+			"name": "7.) SDK - Confirm Replenishment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d0c60a6-b2f0-4bb2-8036-5c229ea45d85",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{HOST}}/sdk/replenishment/{{replenishmentId}}/confirm",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sdk",
+						"replenishment",
+						"{{replenishmentId}}",
+						"confirm"
+					]
+				},
+				"description": "Confirm the given replenishment via the SDK API."
+			},
+			"response": []
+		},
+		{
+			"name": "8.) TSI - Finish Replenishment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5d0c60a6-b2f0-4bb2-8036-5c229ea45d85",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{HOST}}/tsi/replenishment/{{replenishmentId}}/finish",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"tsi",
+						"replenishment",
+						"{{replenishmentId}}",
+						"finish"
+					]
+				},
+				"description": "Finishes the given replenishment via the TokenServiceIntegrator API."
+			},
+			"response": []
+		},
+		{
+			"name": "9.) SDK - Get Replenishment Info",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{HOST}}/sdk/replenishment/{{replenishmentId}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"sdk",
+						"replenishment",
+						"{{replenishmentId}}"
+					]
+				},
+				"description": "Gets information for the given replenishment via the SDK API."
+			},
+			"response": []
+		},
+		{
+			"name": "11.) REPORTING - Get amount of replenishments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{HOST}}/reporting/token/{{tokenId}}/replenishments",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"reporting",
+						"token",
+						"{{tokenId}}",
+						"replenishments"
+					]
+				},
+				"description": "Gets the amount of replenishments for a certain token via the Reporting API."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "151fde54-6341-45a8-9aad-86e429d1ffb5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6efad000-79cd-4c9c-b123-3d7a28a6321b",
+				"type": "text/javascript",
+				"exec": [
+					"if(responseBody){",
+					"    var responseData = JSON.parse(responseBody);",
+					"",
+					"    if(responseData.tokenId){",
+					"        pm.environment.set(\"tokenId\", responseData.tokenId);",
+					"    }",
+					"    ",
+					"    if(responseData.replenishmentId){",
+					"        pm.environment.set(\"replenishmentId\", responseData.replenishmentId);",
+					"    }",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "7d151470-c22c-42b3-842f-2ddc67bc82e4",
+			"key": "HOST",
+			"value": "localhost:8080",
+			"type": "string"
+		},
+		{
+			"id": "370c0e2c-0f7f-4e51-b849-8508e2e098e3",
+			"key": "tokenId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "c8ea04d2-2179-45e1-9650-ed6ef46ede61",
+			"key": "replenishmentId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
